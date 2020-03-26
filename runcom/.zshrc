@@ -27,6 +27,9 @@ for DOTFILE in "$DOTFILES_DIR"/system/{function,path,opt,alias,completion,prompt
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
+# Support local zprofile customization
+[ -f ~/.zprofile ] && . ~/.zprofile
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
