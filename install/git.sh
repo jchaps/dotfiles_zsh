@@ -1,15 +1,6 @@
 # HomeBrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-# Miniconda
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b -u -p $HOME/miniconda
-export PATH="$HOME/miniconda/bin:$PATH"
-rm ~/miniconda.sh
-
-# Conda completion
-git clone https://github.com/esc/conda-zsh-completion "$DOTFILES_DIR/bin/conda-zsh-completion/"
-
 # NVM
 if [ ! -d "$HOME/.nvm/.git" ]
 then
