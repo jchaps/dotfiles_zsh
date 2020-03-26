@@ -1,3 +1,5 @@
+echo -e "\n\nRunning apm.sh"
+
 apm upgrade
 
 #install packages

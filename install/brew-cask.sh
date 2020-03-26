@@ -1,3 +1,5 @@
+echo -e "\n\nRunning brew-cask.sh"
+
 #brew tap caskroom/cask
 #brew install brew-cask
 brew cask ls

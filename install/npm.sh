@@ -1,3 +1,5 @@
+echo -e "\n\nRunning npm.sh"
+
 # source nvm environment
 . "${DOTFILES_DIR}/system/nvm"
 

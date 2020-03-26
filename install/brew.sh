@@ -1,3 +1,5 @@
+echo -e "\n\nRunning brew.sh"
+
 # Install Homebrew
 brew update
 brew upgrade

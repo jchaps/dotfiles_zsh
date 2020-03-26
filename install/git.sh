@@ -4,10 +4,10 @@
 # NVM
 if [ ! -d "$HOME/.nvm/.git" ]
 then
-    echo "Installing NVM"
+    echo -e "\n\nInstalling NVM"
     git clone https://github.com/nvm-sh/nvm.git "$HOME/.nvm"
 else
-    echo "Upgrading NVM"
+    echo -e "\n\nUpgrading NVM"
     git --git-dir="$HOME/.nvm/.git" --work-tree="$HOME/.nvm" fetch --tags origin
 fi
 
@@ -21,20 +21,20 @@ unset GIT_WORK_TREE
 # NPM Completion
 if [ ! -d "$DOTFILES_DIR/bin/zsh-better-npm-completion/.git" ]
 then
-    echo "Installing NPM Completion"
+    echo -e "\n\nInstalling NPM Completion"
     git clone https://github.com/lukechilds/zsh-better-npm-completion.git "$DOTFILES_DIR/bin/zsh-better-npm-completion"
 else
-    echo "Upgrading NPM Completion"
+    echo -e "\n\nUpgrading NPM Completion"
     git --git-dir="$DOTFILES_DIR/bin/zsh-better-npm-completion/.git" --work-tree="$DOTFILES_DIR/bin/zsh-better-npm-completion" fetch --tags origin
 fi
 
 # Powerlevel10k terminal
 if [ ! -d "$DOTFILES_DIR/bin/powerlevel10k/.git" ]
 then
-    echo "Installing Powerlevel10k"
+    echo -e "\n\nInstalling Powerlevel10k"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$DOTFILES_DIR/bin/powerlevel10k"
 else
-    echo "Upgrading Powerlevel10k"
+    echo -e "\n\nUpgrading Powerlevel10k"
     git --git-dir="$DOTFILES_DIR/bin/powerlevel10k/.git" --work-tree="$DOTFILES_DIR/bin/powerlevel10k" fetch --depth=1
 fi
 
