@@ -37,18 +37,6 @@ else
     git --git-dir="$DOTFILES_DIR/bin/zsh-better-npm-completion/.git" --work-tree="$DOTFILES_DIR/bin/zsh-better-npm-completion" fetch --tags origin
 fi
 
-
-# NPM Completion
-if [ ! -d "$DOTFILES_DIR/bin/zsh-better-npm-completion/.git" ]
-then
-    echo "Installing NPM Completion"
-    git clone https://github.com/lukechilds/zsh-better-npm-completion.git "$DOTFILES_DIR/bin/zsh-better-npm-completion"
-else
-    echo "Upgrading NPM Completion"
-    git --git-dir="$DOTFILES_DIR/bin/zsh-better-npm-completion/.git" --work-tree="$DOTFILES_DIR/bin/zsh-better-npm-completion" fetch --tags origin
-fi
-
-
 # Powerlevel10k terminal
 if [ ! -d "$DOTFILES_DIR/bin/powerlevel10k/.git" ]
 then
