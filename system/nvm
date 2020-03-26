@@ -1,18 +1,19 @@
 # Standard load strings (not used)
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
 
 # Defer loading NVM until needed
 # from https://gist.github.com/lukeshiru/e239528fbcc4bba9ae2ef406f197df0c
-if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
-	export NVM_DIR="$HOME/.nvm"
-	source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
-	declare -a __node_commands=(nvm `find -L $NVM_DIR/versions/*/*/bin -type f -exec basename {} \; | sort -u`)
-	function __init_nvm() {
-		for i in "${__node_commands[@]}"; do unalias $i; done
-		. "$NVM_DIR"/nvm.sh
-		unset __node_commands
-		unset -f __init_nvm
-	}
-	for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
-fi
+# Removed this function now that powerlevel prompt with instant load is used
+# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -f __init_nvm)" = function ]; then
+#	export NVM_DIR="$HOME/.nvm"
+#	source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+#	declare -a __node_commands=(nvm `find -L $NVM_DIR/versions/*/*/bin -type f -exec basename {} \; | sort -u`)
+#	function __init_nvm() {
+#		for i in "${__node_commands[@]}"; do unalias $i; done
+#		. "$NVM_DIR"/nvm.sh
+#		unset __node_commands
+#		unset -f __init_nvm
+#	}
+#	for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+# fi
