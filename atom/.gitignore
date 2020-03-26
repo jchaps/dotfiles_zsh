@@ -9,3 +9,4 @@ storage
 .node-gyp
 .npm
 kite-config.json
+.atom-socket-secret*
