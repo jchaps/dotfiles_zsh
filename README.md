@@ -1,5 +1,5 @@
 # dotfiles
-Contains dotfiles and auto-installation scripts
+Contains dotfiles and auto-installation scripts for zsh and macOS
 
 
 ## Sources:
@@ -13,3 +13,7 @@ Contains dotfiles and auto-installation scripts
 
 ## Moving to zsh:
 [Moving to zsh] (https://scriptingosx.com/2019/06/moving-to-zsh/)
+
+## Uses Powerlevel10k prompt theme
+[Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+
