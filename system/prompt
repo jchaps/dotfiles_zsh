@@ -1,0 +1,17 @@
+
+# %F sets foreground color. %F or %f alone resets to default
+# possible named colors: black, red, green, yellow, blue, magenta, cyan and white
+# in 256 color terminal, can use %F{0} through %F{255}: https://jonasjacek.github.io/colors/
+
+#PROMPT='%(?.%F{green}√.%F{red}?%?) %F{cyan}%B%3~%f%b %(!.#.>)  '
+
+# Right prompt with git branch
+#autoload -Uz vcs_info
+#precmd_vcs_info() { vcs_info }
+#precmd_functions+=( precmd_vcs_info )
+#setopt prompt_subst
+#RPROMPT=\$vcs_info_msg_0_
+#zstyle ':vcs_info:git:*' formats '%F{240}(%b)%f'
+#zstyle ':vcs_info:*' enable git
+
+source "$DOTFILES_DIR/bin/powerlevel10k/powerlevel10k.zsh-theme"

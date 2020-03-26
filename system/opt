@@ -1,0 +1,40 @@
+# make globbing case insensitive
+setopt NO_CASE_GLOB
+# allow autocompletion with globbing
+setopt GLOB_COMPLETE
+# assume cd command was issued if missing (allows '..' without alias)
+setopt AUTO_CD
+# zsh correction
+setopt CORRECT
+setopt CORRECT_ALL
+
+
+# set location of command history file
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+# save up to 5000 lines in history file
+SAVEHIST=5000
+# save up to 2000 lines in live history
+HISTSIZE=2000
+# add timestamps to history file
+setopt EXTENDED_HISTORY
+# share history across multiple windows
+setopt SHARE_HISTORY
+# append history, don't overwrite
+setopt APPEND_HISTORY
+# adds commands as they are typed, not at shell exit
+setopt INC_APPEND_HISTORY
+# expire duplicates first
+setopt HIST_EXPIRE_DUPS_FIRST
+# do not store duplications
+setopt HIST_IGNORE_DUPS
+#ignore duplicates when searching
+setopt HIST_FIND_NO_DUPS
+# removes blank lines from history
+setopt HIST_REDUCE_BLANKS
+
+# don't autorun substituted commands
+setopt HIST_VERIFY
+
+# Search history
+#^[[A' up-line-or-search # up arrow bindkey
+#^[[B' down-line-or-search # down arrow 

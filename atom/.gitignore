@@ -1,0 +1,11 @@
+blob-store
+compile-cache
+dev
+packages
+recovery
+split-diff
+storage
+.apm
+.node-gyp
+.npm
+kite-config.json

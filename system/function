@@ -1,0 +1,165 @@
+# Get named var (usage: get "VAR_NAME")
+
+get()
+{
+  echo "${!1}"
+}
+
+# Executable
+
+is-executable()
+{
+  local BIN=$(command -v "$1" 2>/dev/null)
+  if [[ ! $BIN == "" && -x $BIN ]]; then true; else false; fi
+}
+
+is-supported()
+{
+  if [ $# -eq 1 ]; then
+    if eval "$1" > /dev/null 2>&1; then true; else false; fi
+  else
+    if eval "$1" > /dev/null 2>&1; then
+      echo -n "$2"
+    else
+      echo -n "$3"
+    fi
+  fi
+}
+
+# Add to path
+
+prepend-path()
+{
+  [ -d $1 ] && PATH="$1:$PATH"
+}
+
+# Show 256 TERM colors
+
+colors()
+{
+  local X=$(tput op)
+  local Y=$(printf %$((COLUMNS-6))s)
+  for i in {0..256}; do
+  o=00$i;
+  echo -e ${o:${#o}-3:3} $(tput setaf $i;tput setab $i)${Y// /=}$X;
+  done
+}
+
+# Calculator
+
+calc()
+{
+  echo "$*" | bc -l;
+}
+
+# Weather
+
+meteo()
+{
+  local CITY=${1:-20814}
+  curl "wttr.in/$CITY?n"
+}
+
+# Create a new directory and enter it
+
+mk()
+{
+  mkdir -p "$@" && cd "$@"
+}
+
+# Fuzzy find file/dir
+
+ff() {  find . -type f -iname "$1";}
+fff() { find . -type f -iname "*$1*";}
+fd() {  find . -type d -iname "$1";}
+fdf() { find . -type d -iname "*$1*";}
+
+# Determine size of a file or total size of a directory
+
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* ./*;
+	fi;
+}
+
+# Show disk usage of current folder, or list with depth
+
+duf()
+{
+  du --max-depth=${1:-0} -c | sort -r -n | awk '{split("K M G",v); s=1; while($1>1024){$1/=1024; s++} print int($1)v[s]"\t"$2}'
+}
+
+# Use Gits colored diff when available
+
+hash git &>/dev/null;
+if [ $? -eq 0 ]; then
+	diff() {
+		git diff --no-index --color-words "$@";
+	}
+fi;
+
+# Track and fetch all remote Git branches
+
+git-fetch-all()
+{
+    git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+    git fetch --all
+}
+
+# Extract many types of compress files
+# Source: http://nparikh.org/notes/zshrc.txt
+
+extract()
+{
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2)  tar -jxvf "$1"            ;;
+      *.tar.gz)   tar -zxvf "$1"            ;;
+      *.bz2)    bunzip2 "$1"              ;;
+      *.dmg)    hdiutil mount "$1"          ;;
+      *.gz)     gunzip "$1"               ;;
+      *.tar)    tar -xvf "$1"             ;;
+      *.tbz2)   tar -jxvf "$1"            ;;
+      *.tgz)    tar -zxvf "$1"            ;;
+      *.zip)    unzip "$1"              ;;
+      *.ZIP)    unzip "$1"              ;;
+      *.pax)    cat "$1" | pax -r           ;;
+      *.pax.Z)  uncompress "$1" --stdout | pax -r   ;;
+      *.Z)    uncompress "$1"             ;;
+      *)      echo "'$1' cannot be extracted/mounted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file to extract"
+  fi
+}
+
+# Get gzipped file size
+
+gz()
+{
+  local ORIGSIZE=$(wc -c < "$1")
+  local GZIPSIZE=$(gzip -c "$1" | wc -c)
+  local RATIO=$(echo "$GZIPSIZE * 100/ $ORIGSIZE" | bc -l)
+  local SAVED=$(echo "($ORIGSIZE - $GZIPSIZE) * 100/ $ORIGSIZE" | bc -l)
+  printf "orig: %d bytes\ngzip: %d bytes\nsave: %2.0f%% (%2.0f%%)\n" "$ORIGSIZE" "$GZIPSIZE" "$SAVED" "$RATIO"
+}
+
+# Timer functions
+
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+countdown() {
+  date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+  echo "$1 second countdown done"
+}

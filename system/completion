@@ -1,0 +1,18 @@
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
+# conda completion
+fpath+="$DOTFILES_DIR"/bin/conda-zsh-completion
+
+# Homebrew
+if type brew &>/dev/null; then
+  fpath+=$(brew --prefix)/share/zsh/site-functions
+fi
+
+
+autoload -Uz compinit && compinit -u

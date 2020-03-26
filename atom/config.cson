@@ -1,0 +1,40 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "f95edd6d-392a-4132-a045-8aeb1343bc4a"
+  "autocomplete-python":
+    useKite: false
+  core:
+    disabledPackages: [
+      "language-gfm"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    tabLength: 4
+  "exception-reporting":
+    userId: "c910c533-7ec6-4d33-9401-5d9b7b2c2d0a"
+  "linter-ui-default":
+    panelHeight: 101
+    showPanel: true
+  minimap:
+    plugins:
+      "find-and-replace": true
+      "find-and-replaceDecorationsZIndex": 0
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      "split-diff": true
+      "split-diffDecorationsZIndex": 0
+  welcome:
+    showOnStartup: false
+".gfm.source":
+  editor:
+    preferredLineLength: 120
+    scrollPastEnd: true
+    softWrapAtPreferredLineLength: true
+    tabLength: 2

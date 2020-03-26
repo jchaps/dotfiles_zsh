@@ -1,0 +1,12 @@
+/system/custom
+
+/vim/undo/
+/vim/backups/
+/vim/swaps/
+/vim/.netrwhist
+
+/bin/conda-zsh-completion/
+/bin/zsh-better-npm-completion/
+/bin/powerlevel10k/
+
+.DS_Store
