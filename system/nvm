@@ -1,4 +1,5 @@
-# Standard load strings (not used)
+# Standard load strings
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
 
