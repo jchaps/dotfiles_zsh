@@ -10,7 +10,7 @@ rm ~/miniconda.sh
 if [ ! -d "$DOTFILES_DIR/bin/conda-zsh-completion/.git" ]
 then
     echo "Installing Conda Completion"
-    git clone https://github.com/lukechilds/zsh-better-npm-completion.git "$DOTFILES_DIR/bin/zsh-better-npm-completion"
+    git clone https://github.com/esc/conda-zsh-completion.git "$DOTFILES_DIR/bin/conda-zsh-completion"
 else
     echo "Upgrading Conda Completion"
     git --git-dir="$DOTFILES_DIR/bin/conda-zsh-completion/.git" --work-tree="$DOTFILES_DIR/bin/conda-zsh-completion" fetch --tags origin

@@ -32,8 +32,6 @@ alias tree2="tree -d -L 2"
 alias quit="exit"
 alias week="date +%V"
 
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-
 # Always enable colored `grep` output
 alias grep='grep --color=auto'
 

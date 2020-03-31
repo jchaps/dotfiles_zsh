@@ -9,9 +9,6 @@ brew cask ls
 apps=(
   atom
   google-chrome
-  flux
-  github-desktop
-  macdown
   slack
   spotify
   aerial
