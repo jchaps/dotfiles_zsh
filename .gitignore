@@ -4,6 +4,7 @@
 /vim/backups/
 /vim/swaps/
 /vim/.netrwhist
+/vim/colors/
 
 /bin/conda-zsh-completion/
 /bin/zsh-better-npm-completion/
