@@ -14,8 +14,8 @@ CURRENT_SCRIPT=${(%):-%N}
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
   SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
   DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
-elif [ -d "$HOME/projects/dotfiles" ]; then
-  DOTFILES_DIR="$HOME/projects/dotfiles"
+elif [ -d "$HOME/projects/dotfiles_zsh" ]; then
+  DOTFILES_DIR="$HOME/projects/dotfiles_zsh"
 else
   echo "Unable to find dotfiles, exiting."
   return # `exit 1` would quit the shell itself
