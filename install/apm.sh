@@ -4,7 +4,6 @@ apm upgrade
 
 #install packages
 packages=(
-  Hydrogen
   atom-beautify
   autocomplete-python
   busy-signal
@@ -25,6 +24,7 @@ packages=(
   minimap-split-diff
   pdf-view
   split-diff
+  Hydrogen
 )
 
 apm install "${packages[@]}"
