@@ -1,5 +1,7 @@
 echo -e "\n\nRunning apm.sh"
 
+export NODE_EXTRA_CA_CERTS=$HOME/ssl/SystemCertificates.cer
+
 apm upgrade
 
 #install packages
