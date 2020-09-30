@@ -22,9 +22,9 @@ apps=(
   diff-so-fancy
   dockutil
   fasd
+  gh
   gnu-sed
   grep
-  hub
   tldr
   tree
   wget
