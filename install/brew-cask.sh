@@ -2,7 +2,7 @@ echo -e "\n\nRunning brew-cask.sh"
 
 #brew tap caskroom/cask
 #brew install brew-cask
-brew cask ls
+brew list --cask
 
 # Install packages
 
@@ -14,7 +14,7 @@ apps=(
   aerial
 )
 
-brew cask install "${apps[@]}"
+brew install --force --cask "${apps[@]}"
 
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
 
@@ -26,8 +26,7 @@ qlplugins=(
   jupyter-notebook-ql
   qlvideo
   quicklook-csv
-  betterzipql
-  qlimagesize
+  jlimagesize
   suspicious-package
 )
-brew cask install "${qlplugins[@]}"
+brew install --force --cask "${qlplugins[@]}"
