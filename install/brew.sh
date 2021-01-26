@@ -9,6 +9,7 @@ old_apps=(
   bash-completion2
   bats
   battery
+  ffmpeg
   httpie
   jq
   peco
