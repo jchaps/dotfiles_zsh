@@ -9,7 +9,6 @@ brew list --cask
 apps=(
   atom
   google-chrome
-  slack
   spotify
   aerial
 )
