@@ -25,7 +25,6 @@ qlplugins=(
   jupyter-notebook-ql
   qlvideo
   quicklook-csv
-  jlimagesize
   suspicious-package
 )
 brew install --force --cask "${qlplugins[@]}"
