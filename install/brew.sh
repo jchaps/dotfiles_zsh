@@ -9,7 +9,6 @@ old_apps=(
   bash-completion2
   bats
   battery
-  ffmpeg
   httpie
   jq
   peco
@@ -23,9 +22,11 @@ apps=(
   diff-so-fancy
   dockutil
   fasd
+  ffmpeg
   gh
   gnu-sed
   grep
+  speedtest-cli
   tldr
   tree
   wget
