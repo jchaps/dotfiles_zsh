@@ -8,9 +8,12 @@ brew list --cask
 
 apps=(
   atom
+  caffeine
   google-chrome
   spotify
   aerial
+  zoom
+  tripmode
 )
 
 brew install --force --cask "${apps[@]}"
