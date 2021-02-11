@@ -14,6 +14,7 @@ apps=(
   aerial
   zoom
   tripmode
+  hey
 )
 
 brew install --force --cask "${apps[@]}"

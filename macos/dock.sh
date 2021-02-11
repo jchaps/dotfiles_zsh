@@ -4,6 +4,7 @@
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Safari.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
+dockutil --no-restart --add "/Applications/HEY.app"
 dockutil --no-restart --add "/Applications/Twitterrific.app"
 dockutil --no-restart --add "/System/Applications/Photos.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
