@@ -13,6 +13,7 @@ DOTFILES_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.p10k.zsh" ~
+ln -sfv "$DOTFILES_DIR/runcom/docker-compose.yml" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/vim/" ~/.vim
