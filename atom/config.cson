@@ -30,6 +30,7 @@
       "highlight-selectedDecorationsZIndex": 0
       "split-diff": true
       "split-diffDecorationsZIndex": 0
+  "spell-check": {}
   welcome:
     showOnStartup: false
 ".gfm.source":

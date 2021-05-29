@@ -1,6 +1,6 @@
 [user]
-	name = "Joe Chapman"
-	email = "jhchapman@gmail.com"
+	name = Joe Chapman
+	email = jhchapman@gmail.com
 
 [github]
 	user = jchaps
@@ -59,8 +59,6 @@
   prune = true
 [commit]
 	template = ~/.stCommitMsg
-[hub]
-	host = github.com
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process

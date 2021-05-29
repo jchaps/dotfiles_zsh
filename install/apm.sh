@@ -1,10 +1,11 @@
 echo -e "\n\nRunning apm.sh"
 
+export NODE_EXTRA_CA_CERTS=$HOME/ssl/SystemCertificates.cer
+
 apm upgrade
 
 #install packages
 packages=(
-  Hydrogen
   atom-beautify
   autocomplete-python
   busy-signal
@@ -25,6 +26,7 @@ packages=(
   minimap-split-diff
   pdf-view
   split-diff
+  Hydrogen
 )
 
 apm install "${packages[@]}"

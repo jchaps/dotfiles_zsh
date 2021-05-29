@@ -22,9 +22,11 @@ apps=(
   diff-so-fancy
   dockutil
   fasd
+  ffmpeg
+  gh
   gnu-sed
   grep
-  hub
+  speedtest-cli
   tldr
   tree
   wget
