@@ -3,6 +3,7 @@
 alias _="sudo"
 alias g="git"
 alias v="vim"
+alias vi="vim"
 alias rr="rm -rf"
 alias json="json -c"
 
@@ -39,3 +40,11 @@ alias h="history"
 # Suffix aliases
 alias -s txt="atom -n"
 alias -s log="tail -f"
+
+# Docker Compose
+alias dcup='docker-compose -f ~/docker-compose.yml up -d --build --force-recreate' #brings up all containers if one is not defined after dcup
+alias dcdown='docker-compose -f ~/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+alias dcpull='docker-compose -f ~/docker-compose.yml pull' #pulls all new images unless one is specified
+alias dclogs='docker-compose -f ~/docker-compose.yml logs -tf --tail="50" '
+alias dtail='docker logs -tf --tail="50" "$@"'
+alias dcps='docker-compose -f ~/docker-compose.yml ps'

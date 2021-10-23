@@ -1,7 +1,7 @@
 # Standard load strings
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$DOTFILES_DIR/bin/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
 
 # Defer loading NVM until needed
 # from https://gist.github.com/lukeshiru/e239528fbcc4bba9ae2ef406f197df0c
