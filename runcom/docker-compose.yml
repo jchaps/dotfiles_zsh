@@ -1,0 +1,92 @@
+version: "2"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    hostname: pihole
+    domainname: zelchaps.com
+    mac_address: d0:ca:ab:cd:ef:01
+    networks:
+      pihole_network:
+        ipv4_address: 192.168.1.5
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    ports:
+      - 53/tcp
+      - 53/udp
+      - 67/udp
+      - 80/tcp
+      - 443/tcp
+    environment:
+      ServerIP: 192.168.1.5
+      VIRTUAL_HOST: pihole.zelchaps.com
+      TZ: 'America/New_York'
+      WEBPASSWORD: 'E2atoaJ4zWA4yfWaH34p'
+    # Volumes store your data between container upgrades
+    volumes:
+      - '/volume1/docker/pihole/etc-pihole/:/etc/pihole/'
+      - '/volume1/docker/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/volume1/docker/pihole/var-log/pihole.log:/var/log/pihole.log'
+      - '/volume1/docker/pihole/groups-cron:/etc/cron.d/groups-cron'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+  
+  vpn_israel:
+    container_name: vpn_israel
+    image: qmcgaw/gluetun
+    environment:
+        VPNSP: 'private internet access'
+        REGION: 'Israel'
+        OPENVPN_USER: 'p8706300'
+        OPENVPN_PASSWORD: 'Qacdc4PfCh'
+        TZ: 'America/New_York'
+    volumes:
+        - '/volume1/docker/reshet/vpn:/gluetun'
+    cap_add: 
+      - NET_ADMIN
+    restart: unless-stopped
+  
+  homebridge:
+    container_name: homebridge
+    image: oznu/homebridge:latest
+    restart: always
+    network_mode: host
+    environment:
+        PGID: 100
+        PUID: 1026
+        HOMEBRIDGE_CONFIG_UI: 1
+        HOMEBRIDGE_CONFIG_UI_PORT: 8080
+        TZ: 'America/New_York'
+        DSM_HOSTNAME: 'DiskStation'
+    volumes:
+      - /volume1/docker/homebridge:/homebridge
+
+  sonarr:
+      container_name: sonarr
+      image: linuxserver/sonarr
+      restart: unless-stopped
+      environment:
+          TZ: 'America/New_York'
+      ports:
+          - 8989:8989 # Web UI
+      volumes:
+          - '/dev/rtc0:/dev/rtc:ro' 
+          - '/volume1/docker/sonarr/config:/config' 
+          - '/volume2/media/TV Shows:/tv' 
+          - '/volume2/media/Incoming:/incoming' 
+
+networks:
+  pihole_network:
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.5/28
