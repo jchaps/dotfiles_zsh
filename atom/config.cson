@@ -14,6 +14,7 @@
       "atom-dark-syntax"
     ]
   editor:
+    fontSize: 12
     tabLength: 4
   "exception-reporting":
     userId: "c910c533-7ec6-4d33-9401-5d9b7b2c2d0a"

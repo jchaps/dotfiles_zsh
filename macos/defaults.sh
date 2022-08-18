@@ -1,14 +1,18 @@
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
-sudo -v
+# sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+
+# Restart automatically if the computer freezes
+# This is the only active command that requires sudo, so run it first.
+sudo systemsetup -setrestartfreeze on
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -35,9 +39,6 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Disable the crash reporter
 #defaults write com.apple.CrashReporter DialogType -string "none"
-
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
 
 # Disable Notification Center and remove the menu bar icon
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -110,8 +111,10 @@ defaults write com.apple.BezelServices kDimTime -int 300
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 #sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
 
-# Disable auto-correct
+# Disable auto-correct, auto-capitalize, auto-period
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -133,14 +136,15 @@ defaults -currentHost write com.apple.screensaver idleTime -int "300"
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-defaults write com.apple.screencapture type -string "png"
+# Save screenshots in JPG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "jpg"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
 # Enable subpixel font rendering on non-Apple LCDs
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
 
 ###############################################################################
 # Finder                                                                      #
@@ -206,6 +210,45 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict General -bool true OpenWith -bool true Privileges -bool true
 
+# Set up Finder toolbar
+defaults write com.apple.finder 'NSToolbar Configuration Browser' '{
+    "TB Default Item Identifiers" =     (
+        "com.apple.finder.BACK",
+        NSToolbarFlexibleSpaceItem,
+        "com.apple.finder.SWCH",
+        "com.apple.finder.ARNG",
+        "com.apple.finder.ACTN",
+        "com.apple.finder.SHAR",
+        "com.apple.finder.LABL",
+        "com.apple.finder.TRSH",
+        "com.apple.finder.NFLD",
+        NSToolbarFlexibleSpaceItem,
+        NSToolbarFlexibleSpaceItem,
+        "com.apple.finder.SRCH"
+    );
+    "TB Display Mode" = 2;
+    "TB Icon Size Mode" = 1;
+    "TB Is Shown" = 1;
+    "TB Item Identifiers" =     (
+        "com.apple.finder.BACK",
+        NSToolbarFlexibleSpaceItem,
+        "com.apple.finder.SWCH",
+        NSToolbarSpaceItem,
+        "com.apple.finder.ARNG",
+        "com.apple.finder.ACTN",
+        NSToolbarSpaceItem,
+        "com.apple.finder.AirD",
+        "com.apple.finder.SHAR",
+        "com.apple.finder.LABL",
+        NSToolbarFlexibleSpaceItem,
+        NSToolbarFlexibleSpaceItem,
+        "com.getdropbox.dropbox.garcon",
+        "com.apple.finder.SRCH"
+        );
+    "TB Size Mode" = 1;
+}'
+
+
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
@@ -261,13 +304,15 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
+# 13: Lock
+# 14: Quick Note
 
 # Top left screen corner
-#defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-corner -int 0
 #defaults write com.apple.dock wvous-tl-modifier -int 0
 
 # Top right screen corner
-#defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-tr-corner -int 0
 #defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Bottom left screen corner → Screen Saver
@@ -275,7 +320,7 @@ defaults write com.apple.dock wvous-bl-corner -int 5
 #defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Bottom right screen corner
-#defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-corner -int 0
 #defaults write com.apple.dock wvous-br-modifier -int 0
 
 ###############################################################################
@@ -382,6 +427,23 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+###############################################################################
+# Siri                                                                        #
+###############################################################################
+#defaults read com.apple.assistant.support
+
+# Remove siri icon from status menu
+defaults write com.apple.Siri StatusMenuVisible -bool false
+
+# Disable voice feedback
+# 2 : On
+# 3 : Off
+defaults write com.apple.assistant.backedup "Use device speaker for TTS" -int 3
+
+# Enable type to Siri
+defaults write com.apple.Siri TypeToSiriEnabled - bool true
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
