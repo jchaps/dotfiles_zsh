@@ -17,17 +17,14 @@ ln -sfv "$DOTFILES_DIR/runcom/docker-compose.yml" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/vim/" ~/.vim
-ln -sfv "$DOTFILES_DIR/atom/" ~/.atom
 
 if [ "$(uname)" == "Darwin" ]
 then
     # Package managers & packages
      . "$DOTFILES_DIR/install/git.sh"
      . "$DOTFILES_DIR/install/brew.sh"
-     . "$DOTFILES_DIR/install/npm.sh"
      . "$DOTFILES_DIR/install/brew-cask.sh"
      . "$DOTFILES_DIR/install/conda.sh"
-     . "$DOTFILES_DIR/install/apm.sh"
 fi
 
 mkdir -pv "$DOTFILES_DIR/vim/backups"

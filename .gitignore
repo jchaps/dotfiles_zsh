@@ -7,7 +7,6 @@
 /vim/colors/
 
 /bin/conda-zsh-completion/
-/bin/zsh-better-npm-completion/
 /bin/powerlevel10k/
 
 .DS_Store
