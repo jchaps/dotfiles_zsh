@@ -7,14 +7,13 @@ brew list --cask
 # Install packages
 
 apps=(
-  atom
   caffeine
   google-chrome
-  spotify
   aerial
   zoom
   tripmode
   hey
+  visual-studio-code
 )
 
 brew install --force --cask "${apps[@]}"

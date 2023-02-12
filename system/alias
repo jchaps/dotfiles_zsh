@@ -38,7 +38,7 @@ alias grep='grep --color=auto'
 alias h="history"
 
 # Suffix aliases
-alias -s txt="atom -n"
+alias -s txt="code -n"
 alias -s log="tail -f"
 
 # Docker Compose

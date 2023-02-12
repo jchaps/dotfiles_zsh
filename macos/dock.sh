@@ -5,12 +5,11 @@ dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Safari.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/Applications/HEY.app"
-dockutil --no-restart --add "/Applications/Twitterrific.app"
+#dockutil --no-restart --add "/Applications/Twitterrific.app"  REPLACE WITH IVORY
 dockutil --no-restart --add "/System/Applications/Photos.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
-dockutil --no-restart --add "/Applications/Atom.app"
+dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Terminal.app"
-dockutil --no-restart --add "/Applications/Spotify.app"
 dockutil --no-restart --add "/System/Applications/System Preferences.app"
 dockutil --no-restart --add '~/Documents' --view grid --display stack --sort datemodified
 dockutil --no-restart --add '~/Downloads' --view grid --display stack --sort datemodified
