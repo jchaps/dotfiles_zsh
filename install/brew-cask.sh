@@ -4,6 +4,11 @@ echo -e "\n\nRunning brew-cask.sh"
 #brew install brew-cask
 brew list --cask
 
+# Old packages
+old_apps=(
+  caffeine
+)
+
 # Install packages
 
 apps=(

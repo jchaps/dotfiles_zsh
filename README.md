@@ -17,3 +17,6 @@ Contains dotfiles and auto-installation scripts for zsh and macOS
 ## Uses Powerlevel10k prompt theme
 [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
+## Ideas:
+[Switch between ARM64 and x86 emulation](https://medium.com/@ivanzhd/get-your-bash-profile-right-for-mac-m1-and-linux-48d6a70f55db)
+
