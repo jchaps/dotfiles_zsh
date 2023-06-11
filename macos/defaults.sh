@@ -12,7 +12,9 @@ osascript -e 'tell application "System Preferences" to quit'
 
 # Restart automatically if the computer freezes
 # This is the only active command that requires sudo, so run it first.
-sudo systemsetup -setrestartfreeze on
+# This should be default setting. Check it instead with 
+# sudo systemsetup -getrestartfreeze
+# sudo systemsetup -setrestartfreeze on
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
