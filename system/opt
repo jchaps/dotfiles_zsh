@@ -38,3 +38,8 @@ setopt HIST_VERIFY
 # Search history
 bindkey '^[[A' up-line-or-search # up arrow bindkey
 bindkey '^[[B' down-line-or-search # down arrow
+
+# Homebrew arm64 variables
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
