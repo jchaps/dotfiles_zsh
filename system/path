@@ -17,6 +17,7 @@ prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
 # Homebrew arm64
 prepend-path "/opt/homebrew/bin"
+prepend-path "/opt/homebrew/sbin"
 
 # User paths
 prepend-path "$DOTFILES_DIR/bin"
