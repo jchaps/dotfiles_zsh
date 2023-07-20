@@ -19,3 +19,16 @@ fi
 
 # vim Solarized colors
 curl --create-dirs -LJo "$DOTFILES_DIR/vim/colors/solarized.vim" https://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+
+# dockutil
+curl -sL \ 
+    $(curl -s https://api.github.com/repos/kcrawford/docktuil/releases/latest \
+        | grep browser_download_url \
+        | cut -d\" -f4 \
+        | tr -d \" \
+    ) \
+    -o ~/docktuil.pkg
+
+sudo installer -pkg ~/dockutil.pkg -target /
+
+rm ~/dockutil.pkg
