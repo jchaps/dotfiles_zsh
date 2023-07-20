@@ -7,6 +7,7 @@ brew list --cask
 # Old packages
 old_apps=(
   caffeine
+  suspicious-package
 )
 
 # Install packages
@@ -33,6 +34,5 @@ qlplugins=(
   jupyter-notebook-ql
   qlvideo
   quicklook-csv
-  suspicious-package
 )
 brew install --force --cask "${qlplugins[@]}"
