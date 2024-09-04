@@ -14,13 +14,17 @@ old_apps=(
   peco
   psgrep
   shellcheck
+  wifi-password
+  dockutil 
 )
+
+# Brew version of dockutil out of date. 
+# Obtain directly from https://github.com/kcrawford/dockutil/releases
 
 # Install packages
 apps=(
   coreutils
   diff-so-fancy
-  dockutil
   fasd
   ffmpeg
   gh
@@ -30,7 +34,6 @@ apps=(
   tldr
   tree
   wget
-  wifi-password
 )
 
 brew install "${apps[@]}"

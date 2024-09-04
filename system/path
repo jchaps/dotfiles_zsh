@@ -9,12 +9,15 @@ prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"
 #hard encoded brew --prefix to speed up init
-prepend-path "/usr/local/opt/coreutils/libexec/gnubin"
-prepend-path "/usr/local/opt/gnu-sed/libexec/gnubin"
-prepend-path "/usr/local/opt/grep/libexec/gnubin"
+# prepend-path "/usr/local/opt/coreutils/libexec/gnubin"
+# prepend-path "/usr/local/opt/gnu-sed/libexec/gnubin"
+# prepend-path "/usr/local/opt/grep/libexec/gnubin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
+# Homebrew arm64
+prepend-path "/opt/homebrew/bin"
+prepend-path "/opt/homebrew/sbin"
 
 # User paths
 prepend-path "$DOTFILES_DIR/bin"

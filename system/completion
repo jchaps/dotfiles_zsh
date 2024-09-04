@@ -11,8 +11,7 @@ fpath+="$DOTFILES_DIR"/bin/conda-zsh-completion
 
 # Homebrew
 if type brew &>/dev/null; then
-  fpath+=$(brew --prefix)/share/zsh/site-functions
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
-
 
 autoload -Uz compinit && compinit -u
