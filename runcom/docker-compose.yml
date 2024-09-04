@@ -4,32 +4,23 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    hostname: pihole
-    domainname: zelchaps.com
+    #hostname: pihole
+    #domainname: zelchaps.com
     mac_address: d0:ca:ab:cd:ef:01
-    networks:
-      pihole_network:
-        ipv4_address: 192.168.1.5
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
     ports:
       - 53/tcp
       - 53/udp
-      - 67/udp
       - 80/tcp
       - 443/tcp
     environment:
-      ServerIP: 192.168.1.5
-      VIRTUAL_HOST: pihole.zelchaps.com
       TZ: 'America/New_York'
       WEBPASSWORD: 'E2atoaJ4zWA4yfWaH34p'
+      FTLCONF_LOCAL_IPV4: 192.168.10.5
+      DNSMASQ_USER: 'root'
     # Volumes store your data between container upgrades
     volumes:
       - '/volume1/docker/pihole/etc-pihole/:/etc/pihole/'
       - '/volume1/docker/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      - '/volume1/docker/pihole/var-log/pihole.log:/var/log/pihole.log'
-      - '/volume1/docker/pihole/groups-cron:/etc/cron.d/groups-cron'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
@@ -63,8 +54,14 @@ services:
         HOMEBRIDGE_CONFIG_UI_PORT: 8080
         TZ: 'America/New_York'
         DSM_HOSTNAME: 'DiskStation'
+		ENABLE_AVAHI: "0"
     volumes:
       - /volume1/docker/homebridge:/homebridge
+	logging:
+		driver: json-file
+		options:
+			max-size: "10mb"
+			max-file: "1"
 
   sonarr:
       container_name: sonarr
