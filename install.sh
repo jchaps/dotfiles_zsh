@@ -25,6 +25,10 @@ then
      . "$DOTFILES_DIR/install/brew.sh"
      . "$DOTFILES_DIR/install/brew-cask.sh"
      . "$DOTFILES_DIR/install/conda.sh"
+elif [ "$(echo $(echo $(uname -a) | cut -b 1-17))" == "Linux Diskstation" ]
+then
+    # Package managers & packages
+     . "$DOTFILES_DIR/install/git.sh"
 fi
 
 mkdir -pv "$DOTFILES_DIR/vim/backups"
