@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo -e "\n\nRunning brew.sh"
 
 # Install Homebrew
@@ -9,6 +11,7 @@ old_apps=(
   bash-completion2
   bats
   battery
+  fasd
   httpie
   jq
   peco
@@ -23,9 +26,9 @@ old_apps=(
 
 # Install packages
 apps=(
+  gcc
   coreutils
   diff-so-fancy
-  fasd
   ffmpeg
   gh
   gnu-sed

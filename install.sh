@@ -7,7 +7,7 @@ dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 DOTFILES_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 
 # Update dotfiles itself first
-[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin main
 
 # Bunch of symlinks
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc" ~
@@ -29,6 +29,7 @@ elif [ "$(echo $(echo $(uname -a) | cut -b 1-17))" == "Linux Diskstation" ]
 then
     # Package managers & packages
      . "$DOTFILES_DIR/install/git.sh"
+     . "$DOTFILES_DIR/install/brew.sh"
 fi
 
 mkdir -pv "$DOTFILES_DIR/vim/backups"
