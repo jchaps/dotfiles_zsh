@@ -8,7 +8,7 @@ mkdir -p ~/miniconda
 if [ "$(uname)" == "Darwin" ]
 then
     curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda/miniconda.sh
-else if [ "$(uname)" == "Linux" ]
+elif [ "$(uname)" == "Linux" ]
 then
    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda/miniconda.sh
 fi
@@ -34,15 +34,11 @@ packages=(
   jupyter
   matplotlib
   numpy
-  scipy
   pandas
-  pylint
   scikit-learn
   seaborn
-  line_profiler
-  memory_profiler
-  numexpr
-  pandas-datareader
-  )
+  )   
 
-conda install -y "${packages[@]}"
+ conda install -y "${packages[@]}"
+
+
