@@ -13,7 +13,7 @@ then
     # Create fake ldd
     sudo install -m 755 /dev/stdin /usr/bin/ldd <<EOF
 #!/bin/sh
-echo "ldd 2.20"
+[[ $(/usr/lib/libc.so.6) =~ version\ ([0-9]\.[0-9]+) ]] && echo "ldd ${BASH_REMATCH[1]}"
 EOF
 
     # Mount /volume1/homes to /home
