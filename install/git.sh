@@ -7,11 +7,12 @@ then
 elif [ "$(echo $(echo $(uname -a) | cut -b 1-17))" == "Linux Diskstation" ]
 then
     # HomeBrew on Synology DiskStation: https://community.synology.com/enu/forum/1/post/153781 
+    # Alternative: HomeBrew install script https://github.com/MrCee/Synology-Homebrew/tree/main
     echo "Linux Diskstation Brew Install"
     echo "Diskstation requires sudo to install. Please enter admin password."
     
     # Create fake ldd
-    sudo install -m 755 /dev/stdin /usr/bin/ldd <<EOF
+    sudo install -m 755 /dev/stdin /usr/bin/ldd <<"EOF"
 #!/bin/sh
 [[ $(/usr/lib/libc.so.6) =~ version\ ([0-9]\.[0-9]+) ]] && echo "ldd ${BASH_REMATCH[1]}"
 EOF
