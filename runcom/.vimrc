@@ -59,7 +59,7 @@ set smartcase
 " Colors
 
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 
 " Scrolling
