@@ -13,12 +13,9 @@ old_apps=(
 # Install packages
 
 apps=(
-  caffeine
   google-chrome
-  aerial
   zoom
   tripmode
-  hey
   visual-studio-code
 )
 

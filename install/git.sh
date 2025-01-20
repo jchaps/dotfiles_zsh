@@ -4,6 +4,7 @@
 if [ "$(uname)" == "Darwin" ]
 then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ "$(echo $(echo $(uname -a) | cut -b 1-17))" == "Linux Diskstation" ]
 then
     # HomeBrew on Synology DiskStation: https://community.synology.com/enu/forum/1/post/153781 
@@ -29,6 +30,7 @@ EOF
 
     # Now install HomeBrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    eval "$(/var/services/homes/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 # Warning: /home/linuxbrew/.linuxbrew/bin is not in your PATH.
 
@@ -50,22 +52,16 @@ fi
 
 
 # vim Solarized colors
-curl -fLo ~/.vim/colors/solarized.vim --create-dirs https://raw.githubusercontent.com/ericbn/vim-solarized/master/colors/solarized.vim
+curl -fLo "$HOME/.vim/colors/solarized.vim" --create-dirs https://raw.githubusercontent.com/ericbn/vim-solarized/master/colors/solarized.vim
 
 
 # dockutil
 if [ "$(uname)" == "Darwin" ]
 then
-curl -sL \ 
-    $(curl -s https://api.github.com/repos/kcrawford/docktuil/releases/latest \
-        | grep browser_download_url \
-        | cut -d\" -f4 \
-        | tr -d \" \
-    ) \
-    -o ~/docktuil.pkg
+curl -sL $(curl -s https://api.github.com/repos/kcrawford/dockutil/releases/latest | grep browser_download_url | cut -d \" -f4 ) -o "$HOME/dockutil.pkg"
 
 sudo installer -pkg ~/dockutil.pkg -target /
 
-rm ~/dockutil.pkg
+rm "$HOME/dockutil.pkg"
 fi
 
