@@ -129,12 +129,6 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Set screensaver to brew-installed Aerial
-defaults -currentHost write com.apple.screensaver moduleDict -dict-add "path" -string "$HOME/Library/Screen Savers/Aerial.saver"
-defaults -currentHost write com.apple.screensaver moduleDict -dict-add "moduleName" -string "Aerial"
-defaults -currentHost write com.apple.screensaver idleTime -int "300"
-
-
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
