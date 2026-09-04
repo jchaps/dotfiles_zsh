@@ -1,3 +1,7 @@
+# Make the path/cdpath arrays (tied to $PATH/$CDPATH) auto-dedupe on
+# assignment, so we don't need to fork `awk` afterwards to strip duplicates.
+typeset -U path cdpath
+
 # Prepend new items to path (if directory exists)
 
 prepend-path "/bin"
@@ -13,7 +17,12 @@ prepend-path "/usr/local/sbin"
 # Homebrew arm64
 prepend-path "/opt/homebrew/bin"
 prepend-path "/opt/homebrew/sbin"
-prepend-path "/home/linuxbrew/.linuxbrew/bin"
+# Linuxbrew. On macOS, /home is a live autofs automount trigger (auto_home,
+# backed by Open Directory) - stat'ing anything under it makes the
+# automounter do a directory-service lookup, costing ~15-20ms on every
+# shell startup even though the path never exists here. Only touch it on
+# actual Linux.
+[[ $OSTYPE == linux* ]] && prepend-path "/home/linuxbrew/.linuxbrew/bin"
 
 # User paths
 prepend-path "$DOTFILES_DIR/bin"
@@ -23,13 +32,7 @@ prepend-path "$HOME/.local/bin"
 # Conda
 prepend-path "$HOME/miniconda/bin"
 
-# Remove duplicates (preserving prepended items)
-# Source: http://unix.stackexchange.com/a/40755
-
-PATH=`echo -n $PATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
-
 CDPATH=.:~:~/projects:"$(dirname "$DOTFILES_DIR")"
-CDPATH=`echo -n $CDPATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
 
 # Wrap up
 
