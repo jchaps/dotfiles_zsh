@@ -10,8 +10,24 @@ zstyle ':completion:*' expand prefix suffix
 fpath+="$DOTFILES_DIR"/bin/conda-zsh-completion
 
 # Homebrew
-if type brew &>/dev/null; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# Reuse $HOMEBREW_PREFIX (exported by `brew shellenv` in system/opt) instead
+# of forking `brew --prefix` a second time on every shell startup.
+[ -n "$HOMEBREW_PREFIX" ] && FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
+
+# compinit's security audit (compaudit) stats every directory in $fpath and
+# is the single biggest cost in shell startup (~100ms+ the first time,
+# ~15-20ms on every run after). Only pay for the full audit once a day;
+# otherwise skip straight to the cached dump with -C.
+_zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+autoload -Uz compinit
+if [[ -n ${_zcompdump}(#qN.mh+24) ]]; then
+  compinit -u
+else
+  compinit -C -u
 fi
 
-autoload -Uz compinit && compinit -u
+# Byte-compile the dump so future shells parse it faster than raw zsh source.
+if [[ -s "$_zcompdump" && ( ! -s "$_zcompdump.zwc" || "$_zcompdump" -nt "$_zcompdump.zwc" ) ]]; then
+  zcompile "$_zcompdump"
+fi
+unset _zcompdump

@@ -8,10 +8,19 @@ alias vi="vim"
 alias json="json -c"
 
 # dir listing/traversal
+# GNU ls (Linux/Homebrew coreutils) vs BSD ls (macOS) support different flags.
+# $OSTYPE is a zsh builtin, so this branches for free instead of forking
+# `ls` three times per shell startup just to probe which flags it takes.
 
-LS_COLORS=`is-supported "ls --color" --color -G`
-LS_TIMESTYLEISO=`is-supported "ls --time-style=long-iso" --time-style=long-iso`
-LS_GROUPDIRSFIRST=`is-supported "ls --group-directories-first" --group-directories-first`
+if [[ $OSTYPE == darwin* ]]; then
+  LS_COLORS=-G
+  LS_TIMESTYLEISO=
+  LS_GROUPDIRSFIRST=
+else
+  LS_COLORS=--color
+  LS_TIMESTYLEISO=--time-style=long-iso
+  LS_GROUPDIRSFIRST=--group-directories-first
+fi
 
 alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
 alias ll="ls -lA $LS_COLORS"
