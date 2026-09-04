@@ -8,7 +8,7 @@
 
 # Resolve DOTFILES_DIR (assuming ~/projects/dotfiles_zsh on distros without readlink and/or $BASH_SOURCE/$0)
 
-READLINK=$( echo "$(which greadlink || which readlink) " | tail -n1); 
+READLINK=$(whence -p greadlink || whence -p readlink)
 CURRENT_SCRIPT=${(%):-%N}
 
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
