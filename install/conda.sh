@@ -3,21 +3,25 @@
 echo -e "\n\nRunning conda.sh"
 
 # Miniconda
-mkdir -p ~/miniconda
+if [ ! -x ~/miniconda/bin/conda ] && confirm_step "Install Miniconda?"
+then
+    mkdir -p ~/miniconda
 
-if [ "$(uname)" == "Darwin" ]
-then
-    curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda/miniconda.sh
-elif [ "$(uname)" == "Linux" ]
-then
-   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda/miniconda.sh
+    if [ "$(uname)" = "Darwin" ]
+    then
+        curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda/miniconda.sh
+    elif [ "$(uname)" = "Linux" ]
+    then
+       wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda/miniconda.sh
+    fi
+
+    bash ~/miniconda/miniconda.sh -b -u -p ~/miniconda
+    rm ~/miniconda/miniconda.sh
+
+    ~/miniconda/bin/conda init zsh
 fi
 
-bash ~/miniconda/miniconda.sh -b -u -p ~/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
-rm ~/miniconda/miniconda.sh
-
-~/miniconda/bin/conda init zsh
 
 # Conda completion
 if [ ! -d "$DOTFILES_DIR/bin/conda-zsh-completion/.git" ]
@@ -30,15 +34,13 @@ else
 fi
 
 # Install default packages
-packages=(
-  jupyter
-  matplotlib
-  numpy
-  pandas
-  scikit-learn
-  seaborn
-  )   
+packages=()
+while IFS= read -r item
+do
+    [ -n "$item" ] && packages+=("$item")
+done <<EOF
+$(select_items "Conda packages:" jupyter matplotlib numpy pandas scikit-learn seaborn)
+EOF
 
- conda install -y "${packages[@]}"
-
+[ "${#packages[@]}" -gt 0 ] && conda install -y "${packages[@]}"
 
