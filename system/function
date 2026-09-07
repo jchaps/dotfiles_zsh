@@ -56,8 +56,8 @@ calc()
 
 meteo()
 {
-  local CITY=${1:-20814}
-  curl "wttr.in/$CITY?n"
+  # No argument -> wttr.in geolocates by request IP
+  curl "wttr.in/$1?n"
 }
 
 # Create a new directory and enter it
