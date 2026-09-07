@@ -1,4 +1,5 @@
 /system/custom
+/runcom/docker-compose.yml
 
 /vim/undo/
 /vim/backups/
