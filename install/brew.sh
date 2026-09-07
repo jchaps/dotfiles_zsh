@@ -15,7 +15,9 @@ fi
 # Deprecated packages, no longer installed by this script (kept as a record;
 # not auto-uninstalled since they may still be wanted on some machines):
 #   bash-completion2, bats, battery, fasd, httpie, jq, peco, psgrep,
-#   shellcheck, wifi-password, dockutil, gcc, gnu-sed, speedtest-cli
+#   shellcheck, wifi-password, dockutil, gcc, gnu-sed, speedtest-cli, tldr
+#   (replaced by tlrc, the official Rust tldr-pages client; installs the
+#   same `tldr` binary, so no aliases/config need to change)
 
 # Brew version of dockutil out of date.
 # Obtain directly from https://github.com/kcrawford/dockutil/releases
@@ -26,7 +28,7 @@ while IFS= read -r item
 do
     [ -n "$item" ] && apps+=("$item")
 done <<EOF
-$(select_items "Homebrew formulae:" coreutils diff-so-fancy ffmpeg gh grep tldr tree wget)
+$(select_items "Homebrew formulae:" coreutils diff-so-fancy ffmpeg gh grep tlrc tree wget)
 EOF
 
 [ "${#apps[@]}" -gt 0 ] && brew install "${apps[@]}"

@@ -1,4 +1,10 @@
 
+# Make the fpath array (tied to $FPATH) auto-dedupe on assignment - without
+# this, anything that prepends to fpath more than once per shell (e.g. this
+# repo's own .zshrc re-sourcing ~/.zprofile) stacks duplicate entries that
+# persist and grow across nested/inherited shells, since FPATH is exported.
+typeset -U fpath
+
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
@@ -9,10 +15,8 @@ zstyle ':completion:*' expand prefix suffix
 # conda completion
 fpath+="$DOTFILES_DIR"/bin/conda-zsh-completion
 
-# Homebrew
-# Reuse $HOMEBREW_PREFIX (exported by `brew shellenv` in system/opt) instead
-# of forking `brew --prefix` a second time on every shell startup.
-[ -n "$HOMEBREW_PREFIX" ] && FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
+# Homebrew's site-functions dir is already added to fpath by `brew shellenv`
+# (called in system/opt), so nothing to do here.
 
 # compinit's security audit (compaudit) stats every directory in $fpath and
 # is the single biggest cost in shell startup (~100ms+ the first time,
